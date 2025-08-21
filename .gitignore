@@ -6,3 +6,7 @@ build/
 
 # Ignore Gradle build caches and metadata
 .kotlin/
+
+# Ignore .vscode but allow .vscode/extensions.json
+.vscode/
+!.vscode/extensions.json

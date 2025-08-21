@@ -79,6 +79,9 @@ To start the API server:
 ```sh
 # Unix/macOS
 ./gradlew :api:run
+```
+
+```sh
 # Windows
 ./gradlew.bat :api:run
 ```

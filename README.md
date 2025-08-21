@@ -70,6 +70,33 @@ This project uses the `org.jlleitschuh.gradle.ktlint` plugin, which is a Gradle 
 ./gradlew.bat :app:run
 ```
 
+## Running the Ktor API
+
+The Ktor API server is located in the `api` module.
+
+To start the API server:
+
+```sh
+# Unix/macOS
+./gradlew :api:run
+# Windows
+./gradlew.bat :api:run
+```
+
+By default, the server runs on [http://localhost:8080](http://localhost:8080).
+
+## Testing the API with REST Client
+
+You can test the API endpoints using the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for VS Code.
+
+Sample HTTP request files are provided in the `testdata/` directory (e.g., `testdata/all.rest`, `testdata/object.rest`, etc.).
+
+To use:
+
+1. Install the REST Client extension in VS Code.
+2. Open any `.rest` file in `testdata/`.
+3. Click "Send Request" above the desired HTTP request to execute it against the running API server.
+
 ## Notes
 
 - The CLI entry point is in `app/src/main/kotlin/joechungmsft/jsonkt/cli/App.kt`.

@@ -102,3 +102,31 @@ fun parse(expression: String): ParseResult {
 
     return ParseResult(skip = pos, token = token)
 }
+
+fun ValueToken.prettyPrint(indent: Int = 0): String {
+    val indentStr = "  ".repeat(indent)
+    return when (this) {
+        is ObjectToken -> {
+            if (members.isEmpty()) return "{}"
+            val content =
+                members.joinToString(",\n") { pair ->
+                    val key = pair.key?.value ?: ""
+                    val value = pair.value?.prettyPrint(indent + 1) ?: "null"
+                    "$indentStr  \"$key\": $value"
+                }
+            "{\n$content\n$indentStr}"
+        }
+        is ArrayToken -> {
+            if (values.isEmpty()) return "[]"
+            val content =
+                values.joinToString(",\n") { v -> "$indentStr  ${v.prettyPrint(indent + 1)}" }
+            "[\n$content\n$indentStr]"
+        }
+        is StringToken -> "\"${value ?: ""}\""
+        is NumberToken -> value?.toString() ?: "null"
+        is TrueToken -> "true"
+        is FalseToken -> "false"
+        is NullToken -> "null"
+        else -> "null"
+    }
+}

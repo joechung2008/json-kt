@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "json-kt"
-include("app", "json")
+include(":api", ":app", ":json")

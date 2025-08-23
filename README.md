@@ -58,6 +58,38 @@ This project uses the `org.jlleitschuh.gradle.ktlint` plugin, which is a Gradle 
 ./gradlew.bat test
 ```
 
+## Test Coverage Reports (Kover)
+
+The `json` module uses the [Kover](https://github.com/Kotlin/kover) Gradle plugin to generate test coverage reports.
+
+### Generate an HTML Coverage Report
+
+```sh
+# Unix/macOS
+./gradlew :json:koverHtmlReport
+```
+
+```sh
+# Windows
+./gradlew.bat :json:koverHtmlReport
+```
+
+The HTML report will be generated at `json/build/reports/kover/html/index.html`.
+
+### Generate an XML Coverage Report
+
+```sh
+# Unix/macOS
+./gradlew :json:koverXmlReport
+```
+
+```sh
+# Windows
+./gradlew.bat :json:koverXmlReport
+```
+
+The XML report will be generated at `json/build/reports/kover/xml/report.xml`.
+
 ## Running the CLI
 
 ```sh
@@ -104,4 +136,3 @@ To use:
 
 - The CLI entry point is in `app/src/main/kotlin/joechungmsft/jsonkt/cli/App.kt`.
 - The parser library code is in `json/src/main/kotlin/joechungmsft/jsonkt/shared/`.
-- Build logic is managed in `buildSrc/`.

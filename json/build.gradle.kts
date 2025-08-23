@@ -7,7 +7,14 @@ plugins {
 
     // https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
+    id("org.jetbrains.kotlinx.kover") version "0.7.3"
 }
 
 dependencies {
+    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

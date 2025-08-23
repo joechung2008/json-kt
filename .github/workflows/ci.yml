@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml-${{ matrix.java }}
-          path: json/build/reports/kover/xml/report.xml
+          path: json/build/reports/kover/report.xml

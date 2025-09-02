@@ -6,7 +6,7 @@ JSON Parser ported from TypeScript to Kotlin 2.2.0, featuring a CLI application 
 
 ### Prerequisites
 
-- Java 17+
+- Java 24+
 - Gradle (wrapper included)
 
 ### Build Kotlin code

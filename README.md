@@ -104,18 +104,18 @@ The XML report will be generated at `json/build/reports/kover/xml/report.xml`.
 
 ## Running the Ktor API
 
-The Ktor API server is located in the `api` module.
+The Ktor API server is located in the `api-ktor` module.
 
 To start the API server:
 
 ```sh
 # Unix/macOS
-./gradlew :api:run
+./gradlew :api-ktor:run
 ```
 
 ```sh
 # Windows
-./gradlew.bat :api:run
+./gradlew.bat :api-ktor:run
 ```
 
 By default, the server runs on [http://localhost:8080](http://localhost:8080).

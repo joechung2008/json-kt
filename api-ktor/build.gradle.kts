@@ -8,7 +8,7 @@ repositories {
 }
 
 application {
-    mainClass.set("joechungmsft.api.ApplicationKt")
+    mainClass.set("joechungmsft.apiktor.ApplicationKt")
 }
 
 dependencies {

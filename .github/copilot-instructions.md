@@ -4,6 +4,7 @@ This repository is a Kotlin multi-module project. To assist developers, Copilot 
 
 ## Project Structure
 
+- `api-ktor/`: Ktor API application module.
 - `app/`: Main application module.
 - `json/`: Shared JSON utilities and models.
 - `buildSrc/`: Gradle build logic and conventions.

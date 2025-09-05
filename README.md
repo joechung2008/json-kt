@@ -172,3 +172,9 @@ To use:
 
 - The CLI entry point is in `app/src/main/kotlin/joechungmsft/jsonkt/cli/App.kt`.
 - The parser library code is in `json/src/main/kotlin/joechungmsft/jsonkt/shared/`.
+
+## Kotlin VS Code Extension and Language Server
+
+This project is developed using Kotlin, and for the best development experience in VS Code, consider the upcoming official Kotlin VS Code extension and Language Server (LSP) from JetBrains (`jetbrains.kotlin`).
+
+For early access builds, check the [Kotlin LSP releases](https://github.com/Kotlin/kotlin-lsp/blob/main/RELEASES.md) on GitHub.

@@ -77,7 +77,7 @@ class Application : CoroutineVerticle() {
                 ctx.response()
                     .setStatusCode(400)
                     .putHeader("Content-Type", "application/json")
-                    .end(JsonObject.mapFrom(ErrorResponse(400, e.message ?: "Parse error")).encode())
+                    .end(JsonObject().put("code", 400).put("message", e.message ?: "Parse error").encode())
             }
         }
     }

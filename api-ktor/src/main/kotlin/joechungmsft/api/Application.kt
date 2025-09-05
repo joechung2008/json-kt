@@ -31,29 +31,34 @@ data class ErrorResponse(val code: Int, val message: String)
  * POST /api/v1/parse - Accepts JSON strings and returns formatted JSON responses
  */
 fun main() {
-    embeddedServer(Netty, port = 8000) {
-        install(ContentNegotiation) {
-            json()
-        }
-        routing {
-            route("/api/v1") {
-                post("/parse") {
-                    val text = call.receiveText()
-                    try {
-                        val result = parse(text)
-                        call.respondText(
-                            result.token.prettyPrint(),
-                            ContentType.Application.Json
-                        )
-                    } catch (e: Exception) {
-                        call.respondText(
-                            Json.encodeToString(ErrorResponse.serializer(), ErrorResponse(400, e.message ?: "Parse error")),
-                            ContentType.Application.Json,
-                            HttpStatusCode.BadRequest
-                        )
-                    }
+    embeddedServer(Netty, port = 8000, module = Application::module).start(wait = true)
+}
+
+/**
+ * Configures the Ktor application with necessary plugins and routes.
+ */
+fun Application.module() {
+    install(ContentNegotiation) {
+        json()
+    }
+    routing {
+        route("/api/v1") {
+            post("/parse") {
+                val text = call.receiveText()
+                try {
+                    val result = parse(text)
+                    call.respondText(
+                        result.token.prettyPrint(),
+                        ContentType.Application.Json
+                    )
+                } catch (e: Exception) {
+                    call.respondText(
+                        Json.encodeToString(ErrorResponse.serializer(), ErrorResponse(400, e.message ?: "Parse error")),
+                        ContentType.Application.Json,
+                        HttpStatusCode.BadRequest
+                    )
                 }
             }
         }
-    }.start(wait = true)
+    }
 }

@@ -1,9 +1,9 @@
 [versions]
 kotlin-gradle-plugin = "2.2.0"
 kotlin-spring-plugin = "1.9.22"
-kotlinx-coroutines = "1.8.0"
-kotlinx-serialization = "1.6.0"
-ktor = "2.3.7"
+kotlinx-coroutines = "1.10.2"
+kotlinx-serialization = "1.9.0"
+ktor = "3.2.3"
 spring-boot = "3.4.0"
 spring-dependency-management = "1.1.5"
 vertx = "4.5.7"

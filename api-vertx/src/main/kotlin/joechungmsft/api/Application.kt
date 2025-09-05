@@ -29,6 +29,9 @@ data class ErrorResponse(val code: Int, val message: String)
  */
 class Application : CoroutineVerticle() {
 
+    /**
+     * Starts the Vert.x verticle by setting up the HTTP server and routes.
+     */
     override suspend fun start() {
         val router = Router.router(vertx)
 

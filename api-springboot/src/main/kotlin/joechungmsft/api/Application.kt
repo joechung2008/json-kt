@@ -18,17 +18,34 @@ import joechungmsft.jsonkt.shared.prettyPrint
 data class ErrorResponse(val code: Int, val message: String)
 
 @SpringBootApplication
+/**
+ * Main Spring Boot application class for the JSON parsing API.
+ */
 open class Application
 
+/**
+ * Main entry point for the Spring Boot application.
+ *
+ * @param args Command line arguments passed to the application.
+ */
 fun main(args: Array<String>) {
     runApplication<Application>(*args)
 }
 
 @RestController
 @RequestMapping("/api/v1")
+/**
+ * REST controller for JSON parsing operations.
+ */
 class JsonController {
 
     @PostMapping("/parse")
+    /**
+     * Parses a JSON string and returns the formatted result.
+     *
+     * @param jsonString The JSON string to parse.
+     * @return A ResponseEntity containing the formatted JSON or an error response.
+     */
     fun parseJson(@RequestBody jsonString: String): ResponseEntity<Any> {
         return try {
             // Validate request body

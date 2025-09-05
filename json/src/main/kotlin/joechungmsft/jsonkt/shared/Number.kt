@@ -1,5 +1,9 @@
 package joechungmsft.jsonkt.shared
 
+/**
+ * Parsing modes for JSON number syntax, supporting the full JSON number specification
+ * including integers, decimals, and scientific notation.
+ */
 enum class NumberMode {
     Characteristic,
     CharacteristicDigit,
@@ -13,11 +17,30 @@ enum class NumberMode {
     Scanning,
 }
 
+/**
+ * Result of parsing a JSON number.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed number token
+ */
 data class NumberParseResult(
     val skip: Int,
     val token: NumberToken,
 )
 
+/**
+ * Parses a JSON number from the beginning of the input string.
+ *
+ * This function supports the full JSON number specification including:
+ * - Integers: 42, -123
+ * - Decimals: 3.14, -0.5
+ * - Scientific notation: 1.23e4, 5.67E-8
+ *
+ * @param expression The input string containing JSON to parse
+ * @param delimiters Regex pattern defining characters that terminate number parsing
+ * @return A [NumberParseResult] containing the parsed number and characters consumed
+ * @throws SyntaxError if the number syntax is malformed
+ */
 fun parseNumber(
     expression: String,
     delimiters: Regex = Regex("[ \\n\\r\\t]"),

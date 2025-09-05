@@ -1,5 +1,8 @@
 package joechungmsft.jsonkt.shared
 
+/**
+ * Parsing modes for JSON object syntax.
+ */
 enum class ObjectMode {
     Delimiter,
     End,
@@ -7,11 +10,28 @@ enum class ObjectMode {
     Scanning,
 }
 
+/**
+ * Result of parsing a JSON object.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed object token
+ */
 data class ObjectParseResult(
     val skip: Int,
     val token: ObjectToken,
 )
 
+/**
+ * Parses a JSON object from the beginning of the input string.
+ *
+ * This function expects the input to start with '{' and parses until the matching '}'.
+ * It handles objects containing key-value pairs separated by commas, where keys are strings
+ * and values are any valid JSON values.
+ *
+ * @param expression The input string containing JSON to parse
+ * @return An [ObjectParseResult] containing the parsed object and characters consumed
+ * @throws SyntaxError if the object syntax is malformed
+ */
 fun parseObject(expression: String): ObjectParseResult {
     var mode = ObjectMode.Scanning
     var pos = 0

@@ -14,9 +14,21 @@ import joechungmsft.jsonkt.shared.parse
 import joechungmsft.jsonkt.shared.ValueToken
 import joechungmsft.jsonkt.shared.prettyPrint
 
+/**
+ * Response structure for API error messages.
+ *
+ * @property code HTTP status code
+ * @property message Human-readable error description
+ */
 @Serializable
 data class ErrorResponse(val code: Int, val message: String)
 
+/**
+ * Main entry point for the Ktor-based JSON parsing API server.
+ *
+ * Starts an embedded Netty server on port 8000 with a single endpoint:
+ * POST /api/v1/parse - Accepts JSON strings and returns formatted JSON responses
+ */
 fun main() {
     embeddedServer(Netty, port = 8000) {
         install(ContentNegotiation) {

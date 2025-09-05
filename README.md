@@ -118,7 +118,25 @@ To start the API server:
 ./gradlew.bat :api-ktor:run
 ```
 
-By default, the server runs on [http://localhost:8080](http://localhost:8080).
+By default, the server runs on [http://localhost:8000](http://localhost:8000).
+
+## Running the Vert.x API
+
+The Vert.x API server is located in the `api-vertx` module.
+
+To start the API server:
+
+```sh
+# Unix/macOS
+./gradlew :api-vertx:run
+```
+
+```sh
+# Windows
+./gradlew.bat :api-vertx:run
+```
+
+By default, the server runs on [http://localhost:8000](http://localhost:8000).
 
 ## Testing the API with REST Client
 

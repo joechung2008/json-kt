@@ -4,6 +4,9 @@ import joechungmsft.jsonkt.shared.StringToken
 import joechungmsft.jsonkt.shared.SyntaxError
 import joechungmsft.jsonkt.shared.Type
 
+/**
+ * Parsing modes for JSON string syntax, supporting escape sequences and Unicode characters.
+ */
 enum class StringMode {
     Char,
     End,
@@ -12,11 +15,29 @@ enum class StringMode {
     Unicode,
 }
 
+/**
+ * Result of parsing a JSON string.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed string token
+ */
 data class StringParseResult(
     val skip: Int,
     val token: StringToken,
 )
 
+/**
+ * Parses a JSON string from the beginning of the input string.
+ *
+ * This function supports the full JSON string specification including:
+ * - Basic strings: "hello world"
+ * - Escape sequences: \" \\ \/ \b \f \n \r \t
+ * - Unicode characters: \u0041 (for 'A')
+ *
+ * @param expression The input string containing JSON to parse
+ * @return A [StringParseResult] containing the parsed string and characters consumed
+ * @throws SyntaxError if the string syntax is malformed or contains invalid escape sequences
+ */
 fun parseString(expression: String): StringParseResult {
     var mode = StringMode.Scanning
     var pos = 0

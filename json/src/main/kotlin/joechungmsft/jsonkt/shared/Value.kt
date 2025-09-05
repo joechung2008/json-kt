@@ -1,5 +1,8 @@
 package joechungmsft.jsonkt.shared
 
+/**
+ * Parsing modes for JSON value types.
+ */
 enum class ValueMode {
     Array,
     End,
@@ -12,11 +15,29 @@ enum class ValueMode {
     True,
 }
 
+/**
+ * Result of parsing a JSON value.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed value token, or null if parsing failed
+ */
 data class ValueParseResult(
     val skip: Int,
     val token: ValueToken?,
 )
 
+/**
+ * Parses any JSON value from the beginning of the input string.
+ *
+ * This is the main entry point for parsing individual JSON values. It automatically
+ * detects the type of value (array, object, string, number, boolean, or null) and
+ * delegates to the appropriate parsing function.
+ *
+ * @param expression The input string containing JSON to parse
+ * @param delimiters Optional regex pattern defining characters that terminate parsing
+ * @return A [ValueParseResult] containing the parsed value and characters consumed
+ * @throws SyntaxError if the value syntax is malformed or unrecognized
+ */
 fun parseValue(
     expression: String,
     delimiters: Regex? = null,

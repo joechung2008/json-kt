@@ -1,5 +1,8 @@
 package joechungmsft.jsonkt.shared
 
+/**
+ * Parsing modes for JSON key-value pair syntax.
+ */
 enum class PairMode {
     Colon,
     End,
@@ -8,11 +11,29 @@ enum class PairMode {
     Value,
 }
 
+/**
+ * Result of parsing a JSON key-value pair.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed pair token
+ */
 data class PairParseResult(
     val skip: Int,
     val token: PairToken,
 )
 
+/**
+ * Parses a JSON key-value pair from the beginning of the input string.
+ *
+ * This function expects the format "key": value and parses both the string key
+ * and the associated JSON value. Keys must be valid JSON strings, and values
+ * can be any valid JSON type.
+ *
+ * @param expression The input string containing JSON to parse
+ * @param delimiters Optional regex pattern defining characters that terminate parsing
+ * @return A [PairParseResult] containing the parsed pair and characters consumed
+ * @throws SyntaxError if the pair syntax is malformed
+ */
 fun parsePair(
     expression: String,
     delimiters: Regex? = null,

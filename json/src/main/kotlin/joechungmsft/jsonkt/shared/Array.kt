@@ -1,5 +1,8 @@
 package joechungmsft.jsonkt.shared
 
+/**
+ * Parsing modes for JSON array syntax.
+ */
 enum class ArrayMode {
     Comma,
     Elements,
@@ -7,11 +10,27 @@ enum class ArrayMode {
     Scanning,
 }
 
+/**
+ * Result of parsing a JSON array.
+ *
+ * @property skip The number of characters consumed from the input string
+ * @property token The parsed array token
+ */
 data class ArrayParseResult(
     val skip: Int,
     val token: ArrayToken,
 )
 
+/**
+ * Parses a JSON array from the beginning of the input string.
+ *
+ * This function expects the input to start with '[' and parses until the matching ']'.
+ * It handles arrays containing any valid JSON values separated by commas.
+ *
+ * @param expression The input string containing JSON to parse
+ * @return An [ArrayParseResult] containing the parsed array and characters consumed
+ * @throws SyntaxError if the array syntax is malformed
+ */
 fun parseArray(expression: String): ArrayParseResult {
     var mode = ArrayMode.Scanning
     var pos = 0

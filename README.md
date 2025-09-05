@@ -88,7 +88,7 @@ The HTML report will be generated at `json/build/reports/kover/html/index.html`.
 ./gradlew.bat :json:koverXmlReport
 ```
 
-The XML report will be generated at `json/build/reports/kover/xml/report.xml`.
+The XML report will be generated at `json/build/reports/kover/report.xml`.
 
 ## Running the CLI
 

@@ -1,17 +1,15 @@
 package joechungmsft.apivertx
 
 import io.vertx.core.Vertx
-import io.vertx.core.http.HttpServer
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.coAwait
-import kotlinx.coroutines.launch
 import joechungmsft.jsonkt.shared.parse
-import joechungmsft.jsonkt.shared.ValueToken
 import joechungmsft.jsonkt.shared.prettyPrint
+import kotlinx.coroutines.launch
 
 /**
  * Response structure for API error messages.
@@ -19,7 +17,10 @@ import joechungmsft.jsonkt.shared.prettyPrint
  * @property code HTTP status code
  * @property message Human-readable error description
  */
-data class ErrorResponse(val code: Int, val message: String)
+data class ErrorResponse(
+    val code: Int,
+    val message: String,
+)
 
 /**
  * Vert.x-based JSON parsing API server using coroutines.
@@ -28,7 +29,6 @@ data class ErrorResponse(val code: Int, val message: String)
  * POST /api/v1/parse - Accepts JSON strings and returns formatted JSON responses
  */
 class Application : CoroutineVerticle() {
-
     /**
      * Starts the Vert.x verticle by setting up the HTTP server and routes.
      */
@@ -61,7 +61,8 @@ class Application : CoroutineVerticle() {
             try {
                 val body = ctx.body().asString()
                 if (body.isNullOrBlank()) {
-                    ctx.response()
+                    ctx
+                        .response()
                         .setStatusCode(400)
                         .putHeader("Content-Type", "application/json")
                         .end(JsonObject.mapFrom(ErrorResponse(400, "Request body is required")).encode())
@@ -69,12 +70,14 @@ class Application : CoroutineVerticle() {
                 }
 
                 val result = parse(body)
-                ctx.response()
+                ctx
+                    .response()
                     .setStatusCode(200)
                     .putHeader("Content-Type", "application/json")
                     .end(result.token.prettyPrint())
             } catch (e: Exception) {
-                ctx.response()
+                ctx
+                    .response()
                     .setStatusCode(400)
                     .putHeader("Content-Type", "application/json")
                     .end(JsonObject().put("code", 400).put("message", e.message ?: "Parse error").encode())

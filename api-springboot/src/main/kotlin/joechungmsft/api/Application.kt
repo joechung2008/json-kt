@@ -1,13 +1,15 @@
 package joechungmsft.apispringboot
 
+import joechungmsft.jsonkt.shared.parse
+import joechungmsft.jsonkt.shared.prettyPrint
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.*
-import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
-import joechungmsft.jsonkt.shared.parse
-import joechungmsft.jsonkt.shared.ValueToken
-import joechungmsft.jsonkt.shared.prettyPrint
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 /**
  * Response structure for API error messages.
@@ -15,7 +17,10 @@ import joechungmsft.jsonkt.shared.prettyPrint
  * @property code HTTP status code
  * @property message Human-readable error description
  */
-data class ErrorResponse(val code: Int, val message: String)
+data class ErrorResponse(
+    val code: Int,
+    val message: String,
+)
 
 @SpringBootApplication
 /**
@@ -32,21 +37,22 @@ fun main(args: Array<String>) {
     runApplication<Application>(*args)
 }
 
-@RestController
-@RequestMapping("/api/v1")
 /**
  * REST controller for JSON parsing operations.
  */
+@RestController
+@RequestMapping("/api/v1")
 class JsonController {
-
-    @PostMapping("/parse")
     /**
      * Parses a JSON string and returns the formatted result.
      *
      * @param jsonString The JSON string to parse.
      * @return A ResponseEntity containing the formatted JSON or an error response.
      */
-    fun parseJson(@RequestBody jsonString: String): ResponseEntity<Any> {
+    @PostMapping("/parse")
+    fun parseJson(
+        @RequestBody jsonString: String,
+    ): ResponseEntity<Any> {
         return try {
             // Validate request body
             if (jsonString.isBlank()) {
@@ -69,4 +75,3 @@ class JsonController {
         }
     }
 }
-

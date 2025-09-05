@@ -1,19 +1,23 @@
 package joechungmsft.apiktor
 
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.server.application.Application
+import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import io.ktor.server.application.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import io.ktor.http.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.request.receiveText
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.post
+import io.ktor.server.routing.route
+import io.ktor.server.routing.routing
+import joechungmsft.jsonkt.shared.parse
+import joechungmsft.jsonkt.shared.prettyPrint
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import joechungmsft.jsonkt.shared.parse
-import joechungmsft.jsonkt.shared.ValueToken
-import joechungmsft.jsonkt.shared.prettyPrint
+import kotlinx.serialization.serializer
 
 /**
  * Response structure for API error messages.
@@ -22,7 +26,10 @@ import joechungmsft.jsonkt.shared.prettyPrint
  * @property message Human-readable error description
  */
 @Serializable
-data class ErrorResponse(val code: Int, val message: String)
+data class ErrorResponse(
+    val code: Int,
+    val message: String,
+)
 
 /**
  * Main entry point for the Ktor-based JSON parsing API server.
@@ -49,13 +56,13 @@ fun Application.module() {
                     val result = parse(text)
                     call.respondText(
                         result.token.prettyPrint(),
-                        ContentType.Application.Json
+                        ContentType.Application.Json,
                     )
                 } catch (e: Exception) {
                     call.respondText(
                         Json.encodeToString(ErrorResponse.serializer(), ErrorResponse(400, e.message ?: "Parse error")),
                         ContentType.Application.Json,
-                        HttpStatusCode.BadRequest
+                        HttpStatusCode.BadRequest,
                     )
                 }
             }

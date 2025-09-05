@@ -124,11 +124,11 @@ private enum class Mode {
  * Result of a JSON parsing operation.
  *
  * @property skip The number of characters consumed from the input string
- * @property token The parsed JSON token, or null if parsing failed
+ * @property token The parsed JSON token (never null for successful parsing)
  */
 data class ParseResult(
     val skip: Int,
-    val token: ValueToken?,
+    val token: ValueToken,
 )
 
 /**
@@ -139,9 +139,8 @@ data class ParseResult(
  * objects, arrays, strings, numbers, booleans, and null.
  *
  * @param expression The JSON string to parse
- * @return A [ParseResult] containing the parsed token tree and the number of characters consumed.
- *         If parsing fails, the token will be null.
- * @throws Exception if the JSON string is malformed or contains invalid syntax
+ * @return A [ParseResult] containing the parsed token tree and the number of characters consumed
+ * @throws SyntaxError if the JSON string is malformed, contains invalid syntax, or is empty
  */
 fun parse(expression: String): ParseResult {
     var mode = Mode.Scanning
@@ -172,7 +171,12 @@ fun parse(expression: String): ParseResult {
         }
     }
 
-    return ParseResult(skip = pos, token = token)
+    // Throw SyntaxError if parsing failed (token is null)
+    if (token == null) {
+        throw SyntaxError("Failed to parse JSON: invalid or empty input")
+    }
+
+    return ParseResult(skip = pos, token = token!!)
 }
 
 /**

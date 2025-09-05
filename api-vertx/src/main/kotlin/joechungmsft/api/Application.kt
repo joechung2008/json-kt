@@ -66,17 +66,10 @@ class Application : CoroutineVerticle() {
                 }
 
                 val result = parse(body)
-                if (result.token == null) {
-                    ctx.response()
-                        .setStatusCode(400)
-                        .putHeader("Content-Type", "application/json")
-                        .end(JsonObject.mapFrom(ErrorResponse(400, "Parse error: invalid input")).encode())
-                } else {
-                    ctx.response()
-                        .setStatusCode(200)
-                        .putHeader("Content-Type", "text/plain")
-                        .end(result.token!!.prettyPrint())
-                }
+                ctx.response()
+                    .setStatusCode(200)
+                    .putHeader("Content-Type", "application/json")
+                    .end(result.token.prettyPrint())
             } catch (e: Exception) {
                 ctx.response()
                     .setStatusCode(400)

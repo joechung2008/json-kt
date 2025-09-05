@@ -120,6 +120,24 @@ To start the API server:
 
 By default, the server runs on [http://localhost:8000](http://localhost:8000).
 
+## Running the Spring Boot API
+
+The Spring Boot API server is located in the `api-springboot` module.
+
+To start the API server:
+
+```sh
+# Unix/macOS
+./gradlew :api-springboot:run
+```
+
+```sh
+# Windows
+./gradlew.bat :api-springboot:run
+```
+
+By default, the server runs on [http://localhost:8000](http://localhost:8000).
+
 ## Running the Vert.x API
 
 The Vert.x API server is located in the `api-vertx` module.

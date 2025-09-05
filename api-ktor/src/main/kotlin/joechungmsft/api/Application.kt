@@ -10,6 +10,7 @@ import io.ktor.http.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import joechungmsft.jsonkt.shared.parse
 import joechungmsft.jsonkt.shared.ValueToken
 import joechungmsft.jsonkt.shared.prettyPrint
@@ -40,21 +41,15 @@ fun main() {
                     val text = call.receiveText()
                     try {
                         val result = parse(text)
-                        if (result.token == null) {
-                            call.respond(
-                                HttpStatusCode.BadRequest,
-                                ErrorResponse(400, "Parse error: invalid input")
-                            )
-                        } else {
-                            call.respondText(
-                                result.token!!.prettyPrint(),
-                                ContentType.Text.Plain
-                            )
-                        }
+                        call.respondText(
+                            result.token.prettyPrint(),
+                            ContentType.Application.Json
+                        )
                     } catch (e: Exception) {
-                        call.respond(
-                            HttpStatusCode.BadRequest,
-                            ErrorResponse(400, e.message ?: "Parse error")
+                        call.respondText(
+                            Json.encodeToString(ErrorResponse.serializer(), ErrorResponse(400, e.message ?: "Parse error")),
+                            ContentType.Application.Json,
+                            HttpStatusCode.BadRequest
                         )
                     }
                 }

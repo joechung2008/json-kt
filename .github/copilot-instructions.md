@@ -5,6 +5,7 @@ This repository is a Kotlin multi-module project. To assist developers, Copilot 
 ## Project Structure
 
 - `api-ktor/`: Ktor API application module.
+- `api-springboot/`: Spring Boot API application module.
 - `api-vertx/`: Vert.x API application module.
 - `app/`: Main application module.
 - `json/`: Shared JSON utilities and models.
@@ -32,12 +33,12 @@ This repository is a Kotlin multi-module project. To assist developers, Copilot 
 
 ## API Information
 
-Both API modules provide the same JSON parsing functionality:
+All API modules provide the same JSON parsing functionality:
 
 - **Endpoint**: `POST /api/v1/parse`
 - **Input**: JSON string in request body (content-type: text/plain)
-- **Output**: Formatted JSON string or error response
-- **Port**: Both APIs run on port 8000
+- **Output**: Formatted JSON string or error response (content-type: application/json)
+- **Port**: All APIs run on port 8000
 - **Functionality**: Parse JSON using the shared `json` module and return formatted result
 
 ## Suggestions for Copilot
@@ -47,4 +48,5 @@ Both API modules provide the same JSON parsing functionality:
 - When generating tests, use JUnit and mock dependencies as needed.
 - For CLI code, entry point is `App.kt` in `app/src/main/kotlin/joechungmsft/jsonkt/cli/`.
 - For Ktor API code, entry point is `Application.kt` in `api-ktor/src/main/kotlin/joechungmsft/api/`.
+- For Spring Boot API code, entry point is `Application.kt` in `api-springboot/src/main/kotlin/joechungmsft/api/`.
 - For Vert.x API code, entry point is `Application.kt` in `api-vertx/src/main/kotlin/joechungmsft/api/`.

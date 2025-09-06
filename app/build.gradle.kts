@@ -4,14 +4,10 @@
 
 plugins {
     id("buildlogic.kotlin-application-conventions")
-
-    // https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
 }
 
 dependencies {
     implementation(project(":json"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
 }
 
 application {

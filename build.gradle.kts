@@ -1,6 +1,9 @@
 plugins {
-    id("com.github.ben-manes.versions") version "0.52.0" // Check for latest version
-    id("org.jetbrains.kotlinx.kover") version "0.7.3"
+    // https://github.com/ben-manes/gradle-versions-plugin
+    id("com.github.ben-manes.versions") version "0.52.0"
+
+    // https://github.com/Kotlin/kotlinx-kover
+    id("org.jetbrains.kotlinx.kover") version "0.8.0"
 
     // https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "13.1.0"

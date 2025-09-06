@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
 }
 
 tasks.test {

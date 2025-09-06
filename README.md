@@ -179,7 +179,7 @@ This project is developed using Kotlin, and for the best development experience 
 
 For early access builds, check the [Kotlin LSP releases](https://github.com/Kotlin/kotlin-lsp/blob/main/RELEASES.md) on GitHub.
 
-## Checking for Dependency Updates (Ben Manes Versions Plugin)
+## Checking for Dependency Updates
 
 This project uses the [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) to help you discover dependency updates.
 
@@ -199,7 +199,7 @@ Run the following command in your project root:
 
 ### Where to Find the Report
 
-After running the command, a report will be generated at [report.txt](./build/dependencyUpdates/report.txt).
+After running the command, a report will be generated at `./build/dependencyUpdates/report.txt`.
 
 This file lists your current dependencies and any available updates.
 

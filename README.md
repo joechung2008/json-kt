@@ -178,3 +178,29 @@ To use:
 This project is developed using Kotlin, and for the best development experience in VS Code, consider the upcoming official Kotlin VS Code extension and Language Server (LSP) from JetBrains (`jetbrains.kotlin`).
 
 For early access builds, check the [Kotlin LSP releases](https://github.com/Kotlin/kotlin-lsp/blob/main/RELEASES.md) on GitHub.
+
+## Checking for Dependency Updates (Ben Manes Versions Plugin)
+
+This project uses the [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) to help you discover dependency updates.
+
+### How to Check for Updates
+
+Run the following command in your project root:
+
+```sh
+# Unix/macOS
+./gradlew dependencyUpdates
+```
+
+```sh
+# Windows
+./gradlew.bat dependencyUpdates
+```
+
+### Where to Find the Report
+
+After running the command, a report will be generated at [report.txt](./build/dependencyUpdates/report.txt).
+
+This file lists your current dependencies and any available updates.
+
+For more details and configuration options, see the [plugin documentation](https://github.com/ben-manes/gradle-versions-plugin).

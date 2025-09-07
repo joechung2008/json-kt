@@ -12,7 +12,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = "joechungmsft.jsonkt.cli.AppKt"
+    mainClass = "com.github.jsonkt.cli.AppKt"
 }
 
 // https://stackoverflow.com/a/13172566

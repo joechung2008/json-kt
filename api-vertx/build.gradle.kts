@@ -8,7 +8,7 @@ repositories {
 }
 
 application {
-    mainClass.set("joechungmsft.apivertx.ApplicationKt")
+    mainClass.set("com.github.jsonkt.apivertx.ApplicationKt")
 }
 
 dependencies {

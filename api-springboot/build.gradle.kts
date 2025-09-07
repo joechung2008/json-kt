@@ -10,7 +10,7 @@ repositories {
 }
 
 application {
-    mainClass.set("joechungmsft.apispringboot.ApplicationKt")
+    mainClass.set("com.github.jsonkt.apispringboot.ApplicationKt")
 }
 
 dependencies {

@@ -9,7 +9,7 @@ repositories {
 }
 
 application {
-    mainClass.set("joechungmsft.apiktor.ApplicationKt")
+    mainClass.set("com.github.jsonkt.apiktor.ApplicationKt")
 }
 
 dependencies {

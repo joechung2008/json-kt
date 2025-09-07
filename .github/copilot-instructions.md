@@ -10,7 +10,6 @@ This repository is a Kotlin multi-module project. To assist developers, Copilot 
 - `app/`: Main application module.
 - `json/`: Shared JSON utilities and models.
 - `buildSrc/`: Gradle build logic and conventions.
-- Source code is under `src/main/kotlin/joechungmsft/jsonkt/` in each module.
 
 ## Coding Conventions
 
@@ -46,7 +45,3 @@ All API modules provide the same JSON parsing functionality:
 - Suggest code that matches the existing style and conventions.
 - Prefer Kotlin standard library and idioms.
 - When generating tests, use JUnit and mock dependencies as needed.
-- For CLI code, entry point is `App.kt` in `app/src/main/kotlin/joechungmsft/jsonkt/cli/`.
-- For Ktor API code, entry point is `Application.kt` in `api-ktor/src/main/kotlin/joechungmsft/api/`.
-- For Spring Boot API code, entry point is `Application.kt` in `api-springboot/src/main/kotlin/joechungmsft/api/`.
-- For Vert.x API code, entry point is `Application.kt` in `api-vertx/src/main/kotlin/joechungmsft/api/`.

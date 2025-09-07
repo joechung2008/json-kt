@@ -170,8 +170,8 @@ To use:
 
 ## Notes
 
-- The CLI entry point is in `app/src/main/kotlin/joechungmsft/jsonkt/cli/App.kt`.
-- The parser library code is in `json/src/main/kotlin/joechungmsft/jsonkt/shared/`.
+- The CLI entry point is in `app/src/main/kotlin/com/github/jsonkt/cli/App.kt`.
+- The parser library code is in `json/src/main/kotlin/com/github/jsonkt/shared/`.
 
 ## Kotlin VS Code Extension and Language Server
 

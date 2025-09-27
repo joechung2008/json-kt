@@ -1,9 +1,5 @@
 package com.github.jsonkt.shared
 
-import com.github.jsonkt.shared.StringToken
-import com.github.jsonkt.shared.SyntaxError
-import com.github.jsonkt.shared.Type
-
 /**
  * Parsing modes for JSON string syntax, supporting escape sequences and Unicode characters.
  */
@@ -119,15 +115,12 @@ fun parseString(expression: String): StringParseResult {
                 if (slice.length < 4) {
                     throw SyntaxError("incomplete Unicode code '$slice'")
                 }
-                val hex = slice.toIntOrNull(16)
-                if (hex == null) {
-                    throw SyntaxError("unexpected Unicode code '$slice'")
-                }
+                val hex = slice.toIntOrNull(16) ?: throw SyntaxError("unexpected Unicode code '$slice'")
                 value += hex.toChar()
                 pos += 4
                 mode = StringMode.Char
             }
-            StringMode.End -> {
+            else -> {
                 // This case is handled in StringMode.Char when we encounter a closing quote
             }
         }

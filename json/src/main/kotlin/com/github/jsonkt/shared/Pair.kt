@@ -78,7 +78,7 @@ fun parsePair(
                 pos += valueResult.skip
                 mode = PairMode.End
             }
-            PairMode.End -> {
+            else -> {
                 // This case is handled in PairMode.Value when we encounter the end of the value
             }
         }

@@ -62,7 +62,7 @@ fun parseObject(expression: String): ObjectParseResult {
                     mode = ObjectMode.End
                 } else {
                     val slice = expression.substring(pos)
-                    val pair = parsePair(slice, Regex("[ \\n\\r\\t\\},]"))
+                    val pair = parsePair(slice, Regex("[ \\n\\r\\t},]"))
                     members.add(pair.token)
                     pos += pair.skip
                     mode = ObjectMode.Delimiter
@@ -81,7 +81,7 @@ fun parseObject(expression: String): ObjectParseResult {
                     throw SyntaxError("expected ',' or '}', actual '$ch'")
                 }
             }
-            ObjectMode.End -> {
+            else -> {
                 // BUG This should not happen as we should have already exited the loop
             }
         }

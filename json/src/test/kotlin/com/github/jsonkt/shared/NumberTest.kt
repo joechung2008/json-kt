@@ -127,9 +127,9 @@ class NumberTest {
 
     @Test
     fun testParseMinPositiveDouble() {
-        val result = parse("5e-324")
+        val result = parse("4.9e-324")
         val token = result.token
         assertTrue(token is NumberToken)
-        assertEquals(5e-324, (token as NumberToken).value)
+        assertEquals(4.9E-324, (token as NumberToken).value)
     }
 }

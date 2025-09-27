@@ -62,7 +62,7 @@ fun parseValue(
                     ch == 't' -> mode = ValueMode.True
                     delimiters?.containsMatchIn(ch.toString()) == true -> mode = ValueMode.End
                     else ->
-                        throw com.github.jsonkt.shared.SyntaxError(
+                        throw SyntaxError(
                             "expected array, false, null, number, object, string, or true, actual '$ch'",
                         )
                 }
@@ -81,8 +81,7 @@ fun parseValue(
                     pos += 5
                     mode = ValueMode.End
                 } else {
-                    throw com.github.jsonkt.shared
-                        .SyntaxError("expected false, actual $slice")
+                    throw SyntaxError("expected false, actual $slice")
                 }
             }
             ValueMode.Null -> {
@@ -92,8 +91,7 @@ fun parseValue(
                     pos += 4
                     mode = ValueMode.End
                 } else {
-                    throw com.github.jsonkt.shared
-                        .SyntaxError("expected null, actual $slice")
+                    throw SyntaxError("expected null, actual $slice")
                 }
             }
             ValueMode.Number -> {
@@ -129,15 +127,14 @@ fun parseValue(
                     pos += 4
                     mode = ValueMode.End
                 } else {
-                    throw com.github.jsonkt.shared
-                        .SyntaxError("expected true, actual $slice")
+                    throw SyntaxError("expected true, actual $slice")
                 }
             }
-            ValueMode.End -> {
+            else -> {
                 if (delimiters?.containsMatchIn(ch.toString()) == true) {
                     pos++
                 } else {
-                    throw com.github.jsonkt.shared.SyntaxError(
+                    throw SyntaxError(
                         "unexpected character '$ch' after value",
                     )
                 }
@@ -146,8 +143,7 @@ fun parseValue(
     }
 
     if (token == null) {
-        throw com.github.jsonkt.shared
-            .SyntaxError("value cannot be empty")
+        throw SyntaxError("value cannot be empty")
     }
 
     return ValueParseResult(skip = pos, token = token)

@@ -66,13 +66,13 @@ fun parseNumber(
                 }
             }
             NumberMode.Characteristic -> {
-                when {
-                    ch == '0' -> {
+                when (ch) {
+                    '0' -> {
                         valueAsString += "0"
                         pos++
                         mode = NumberMode.DecimalPoint
                     }
-                    ch in '1'..'9' -> {
+                    in '1'..'9' -> {
                         valueAsString += ch
                         pos++
                         mode = NumberMode.CharacteristicDigit
@@ -152,7 +152,7 @@ fun parseNumber(
                     else -> throw SyntaxError("expected digit, actual '$ch'")
                 }
             }
-            NumberMode.End -> {
+            else -> {
                 // BUG This should not happen as we should have already exited the loop
             }
         }

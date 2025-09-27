@@ -4,7 +4,6 @@ package com.github.jsonkt.shared
  * Represents the different types of JSON tokens that can be parsed.
  */
 enum class Type {
-    Unknown,
     Array,
     False,
     Null,
@@ -13,7 +12,6 @@ enum class Type {
     Object,
     String,
     True,
-    Value,
 }
 
 /**
@@ -165,7 +163,7 @@ fun parse(expression: String): ParseResult {
                 pos += value.skip
                 mode = Mode.End
             }
-            Mode.End -> {
+            else -> {
                 // BUG This should not happen as we should have already exited the loop
             }
         }

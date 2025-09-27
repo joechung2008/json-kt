@@ -48,7 +48,7 @@ fun parseArray(expression: String): ArrayParseResult {
                         mode = ArrayMode.Elements
                     }
                     else ->
-                        throw com.github.jsonkt.shared.SyntaxError(
+                        throw SyntaxError(
                             "expected '[', actual '$ch'",
                         )
                 }
@@ -58,8 +58,7 @@ fun parseArray(expression: String): ArrayParseResult {
                     ch.isWhitespace() -> pos++
                     ch == ']' -> {
                         if (values.isNotEmpty()) {
-                            throw com.github.jsonkt.shared
-                                .SyntaxError("unexpected ','")
+                            throw SyntaxError("unexpected ','")
                         }
                         pos++
                         mode = ArrayMode.End
@@ -85,20 +84,19 @@ fun parseArray(expression: String): ArrayParseResult {
                         mode = ArrayMode.Elements
                     }
                     else ->
-                        throw com.github.jsonkt.shared.SyntaxError(
+                        throw SyntaxError(
                             "expected ',', actual '$ch'",
                         )
                 }
             }
-            ArrayMode.End -> {
+            else -> {
                 // BUG This should not happen as we should have already exited the loop
             }
         }
     }
 
     if (mode != ArrayMode.End) {
-        throw com.github.jsonkt.shared
-            .SyntaxError("incomplete expression, mode $mode")
+        throw SyntaxError("incomplete expression, mode $mode")
     }
 
     return ArrayParseResult(skip = pos, token = ArrayToken(values = values))

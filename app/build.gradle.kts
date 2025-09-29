@@ -4,6 +4,7 @@
 
 plugins {
     id("buildlogic.kotlin-application-conventions")
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 dependencies {
@@ -13,6 +14,13 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = "com.github.jsonkt.cli.AppKt"
+}
+
+// Configure shadowJar to set the main class in the manifest
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+    manifest {
+        attributes["Main-Class"] = "com.github.jsonkt.cli.AppKt"
+    }
 }
 
 // https://stackoverflow.com/a/13172566

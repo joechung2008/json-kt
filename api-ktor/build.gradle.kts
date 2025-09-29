@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "2.2.20"
     application
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 repositories {
@@ -10,6 +11,13 @@ repositories {
 
 application {
     mainClass.set("com.github.jsonkt.apiktor.ApplicationKt")
+}
+
+// Configure shadowJar to set the main class in the manifest
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+    manifest {
+        attributes["Main-Class"] = "com.github.jsonkt.apiktor.ApplicationKt"
+    }
 }
 
 dependencies {

@@ -16,6 +16,5 @@ application {
 dependencies {
     implementation(project(":json"))
     implementation(libs.spring.boot.starter.web)
-    implementation(libs.spring.boot.starter.actuator)
     implementation(libs.kotlinx.serialization.json)
 }

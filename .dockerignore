@@ -1,6 +1,7 @@
 # Ignore build outputs, IDE files, and VCS
 build/
 .gradle/
+.kotlin/
 .idea/
 *.iml
 *.log

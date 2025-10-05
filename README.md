@@ -1,12 +1,12 @@
 # json-kt
 
-JSON Parser ported from TypeScript to Kotlin 2.2.0, featuring a CLI application and a parser library.
+JSON Parser ported from TypeScript to Kotlin 2.2.20, featuring a CLI application and a parser library.
 
 ## Build and Test Instructions
 
 ### Prerequisites
 
-- Java 24+
+- Java 17+
 - Gradle (wrapper included)
 
 ### Build Kotlin code
